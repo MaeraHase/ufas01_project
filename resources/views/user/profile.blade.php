@@ -1,103 +1,123 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
-        <h2>アカウント登録情報</h2>
-        <!-- ユーザーのプロフィール情報を表示 -->
-    </div>
-     <div class="flex bg-gray-100">
+    <!--<x-slot name="header">-->
+    <!--    <h2 class="font-semibold text-xl text-gray-800 leading-tight">-->
+    <!--        プロフィール編集-->
+    <!--    </h2>-->
+    <!--</x-slot>-->
+<div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            アカウント登録情報編集
+        </h2>
+                   @if (session('success'))
+                        <script>
+                            alert('{{ session('success') }}');
+                        </script>
+                    @endif
 
-        <!--左エリア[START]--> 
-        <div class="text-gray-700 text-left px-4 py-4 m-2">
-            
-            <!--<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">-->
-            <!--    <div class="p-6 bg-white border-b border-gray-500 font-bold">-->
-            <!--        アカウント-->
-            <!--    </div>-->
-            <!--</div>-->
-
-
-            <!-- 本のタイトル -->
-            
-            <form action="{{ url('user.profile') }}" method="POST" class="w-full max-w-lg">
-                @csrf
-                  <div class="flex flex-col px-2 py-2">
-                   <!-- カラム１ -->
-                    <div class="w-full md:w-1/1 px-3 mb-2 md:mb-0">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                       名前
-                      </label>
-                      <p><input name="user_name" class="appearance-none block w-full text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder=""></p>
-                    </div>
-                     <!-- カラム２ -->
-                    <div class="w-full md:w-1/1 px-3 mb-2 md:mb-0">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                       メールアドレス
-                      </label>
-                      <p><input name="user_name" class="appearance-none block w-full text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder=""></p>
-                    </div>
-                    <!-- カラム３ -->
-                    <div class="w-full md:w-1/1 px-3">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        パスワード
-                      </label>
-                      <p><input name="email" class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder=""></p>
-                    </div>
-                    <!-- カラム３ -->
-                    <!--<div class="w-full md:w-1/1 px-3 mb-2 md:mb-0">-->
-                    <!--  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">-->
-                    <!--    Password-->
-                    <!--  </label>-->
-                    <!--  <input name="password" class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">-->
-                    <!--</div>-->
-                    <!-- カラム４ -->
-                    <div class="w-full md:w-1/1 px-3 mb-6 md:mb-0">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        性別
-                        <p><input type="radio" id="1" name="1"><label for="1">女性</label>
-                        <input type="radio" id="2" name="2"><label for="2">男性</label>
-                        <input type="radio" id="3" name="3"><label for="3">その他</label></p>
-
-                         <!--<ul>-->
-                         <!--<li>女性</li>-->
-                         <!--<li>男性</li>-->
-                         <!--<li>その他</li>-->
-                         <!--</ul>-->
-                      </label>
-                      <!--<input name="sex" class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">-->
-                    </div>
-                  </div>
-                  <!-- カラム５ -->
-                  <div class="w-full md:w-1/1 px-3">
-                      <p>
-                        住所
-                      </p>
-                      <input name="email" class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="郵便番号">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        　　　
-                      </label>
-                      <p><input name="email" class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder=""><p>
-                    </div>
-                    <!-- カラム6 -->
-                    <div class="w-full md:w-1/1 px-3">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        電話番号
-                      </label>
-                      <p><input name="email" class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder=""></p>
-                    </div>
-                  <!-- カラム7 -->
-                  <div class="flex flex-col">
-                      <div class="text-gray-700 text-center px-4 py-2 m-2">
-                             <x-button class="bg-blue-500 rounded-lg">編集</x-button>
-                      </div>
-                   </div>
-            </form>
+                    <form method="POST" action="{{ route('user.profile') }}">
+                        @csrf
+                        <!-- カラム１ -->
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">名前</label>
+                            <p><input id="name" type="text" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ old('name', $user->name) }}" required></p>
+                            @error('name')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <!-- カラム２ -->
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">メールアドレス</label>
+                            <p><input id="email" type="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ old('email', $user->email) }}" required></p>
+                            @error('email')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <!-- カラム３-->
+                        <div class="mb-4">
+                            <p>パスワード</p>
+                            <!--<label for="password" class="block text-gray-700 text-sm font-bold mb-2">パスワード</label>-->
+                            <!--<p><input id="password" type="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></p>-->
+                            <p class="text-gray-600 text-sm">パスワードを変更する場合のみ入力してください。</p>
+                            @error('password')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <!-- カラム４ -->
+                        <div class="mb-4">
+                            <label for="new_password" class="block text-gray-700 text-sm font-bold mb-2">新規パスワード</label>
+                            <p><input id="new_password" type="password" name="new_password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></p>
+                            @error('new_password')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <!-- カラム５ -->
+                        <div class="mb-4">
+                            <label for="new_password_confirmation" class="block text-gray-700 text-sm font-bold mb-2">新規パスワード確認</label>
+                            <p><input id="new_password_confirmation" type="password" name="new_password_confirmation" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></p>
+                            @error('new_password_confirmation')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <!-- カラム６ -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">性別</label>
+                            <div class="flex items-center">
+                                <label class="mr-4">
+                                    <input type="radio" name="sex" value="1" class="mr-1" {{ old('sex', $user->sex) == '1' ? 'checked' : '' }}>
+                                    女性
+                                </label>
+                                <label class="mr-4">
+                                    <input type="radio" name="sex" value="2" class="mr-1" {{ old('sex', $user->sex) == '2' ? 'checked' : '' }}>
+                                    男性
+                                </label>
+                                <label>
+                                    <input type="radio" name="sex" value="0" class="mr-1" {{ old('sex', $user->sex) == '0' ? 'checked' : '' }}>
+                                    その他
+                                </label>
+                            </div>
+                            @error('gender')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <!-- カラム７ -->
+                        <div class="mb-4">
+                            <p>住所</p>
+                            <!--<label for="address_code" class="block text-gray-700 text-sm font-bold mb-2">郵便番号</label>-->
+                            <p><input id="address_code" type="text" name="address_code" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ old('address_code', $user->address_code) }}" required placeholder="郵便番号"></p>
+                            @error('address_code')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <!-- カラム８ -->
+                        <div class="mb-4">
+                            <!--<label for="address" class="block text-gray-700 text-sm font-bold mb-2">住所</label>-->
+                            <p><input id="address" type="text" name="address" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ old('address', $user->address) }}" required  required placeholder="住所"><p>
+                            @error('address')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <!-- カラム９ -->
+                        <div class="mb-4">
+                            <label for="phonenumber" class="block text-gray-700 text-sm font-bold mb-2">電話番号</label>
+                            <p><input id="phonenumber" type="text" name="phonenumber" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ old('phonenumber', $user->phonenumber) }}" required></p>
+                            @error('phonenumber')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <!-- カラム１０ -->
+                        <div class="mb-4">
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                更新
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <!--左エリア[END]--> 
-    
-    
-
-</div>
- <!--全エリア[END]-->
+    </div>
 @endsection

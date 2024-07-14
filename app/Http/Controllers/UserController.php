@@ -19,6 +19,8 @@ class UserController extends Controller
     {
         //
         return view('user.menu');
+        // $user = Auth::user();
+        // return view('user.profile', ['user' => $user]);
         // return view('user.profile');
     //     $users = Users::orderBy('created_at', 'asc')->get();
     // return view('users', [
@@ -28,7 +30,9 @@ class UserController extends Controller
     public function showProfile()
     {
         // ユーザーのプロフィール情報を取得するなどの処理を実装する
-        return view('user.profile');
+        $user = Auth::user();
+        return view('user.profile', ['user' => $user]);
+        // return view('user.profile');
     }
 
     public function showBodyData()
@@ -80,7 +84,7 @@ class UserController extends Controller
 //          'published'   => 'required',
 //     ]);
 
-//     //バリデーション:エラー 
+//     //バリデーション:エラー
 //     if ($validator->fails()) {
 //         return redirect('/')
 //             ->withInput()
@@ -94,7 +98,7 @@ class UserController extends Controller
 //   $books->item_number = $request->item_number;
 //   $books->item_amount = $request->item_amount;
 //   $books->published   = $request->published;
-//   $books->save(); 
+//   $books->save();
 // //   return redirect('/');
 //     }
 

@@ -7,16 +7,32 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\UserBodyDataController;
 use App\Http\Controllers\RegisterController;
 
-// Route::get('/user/menu', [UserController::class, 'index'])->middleware(['auth'])->name('user.menu');
+Route::get('/user/menu', [UserController::class, 'index'])->middleware(['auth'])->name('user.menu');
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register.form');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
-Route::get('/user/menu', [UserController::class, 'index'])->name('user.menu');
-Route::get('/user/profile', [UserController::class, 'showProfile'])->name('user.profile');
-Route::get('/user/bodydata', [UserController::class, 'showBodyData'])->name('user.bodydata');
-Route::get('/user/bodydata/edit', [UserController::class, 'editBodyData'])->name('user.bodydata.edit');
+// Route::get('/user/menu', [UserController::class, 'index'])->name('user.menu');
+
+// Route::get('/user/profile', [UserController::class, 'showProfile'])->name('user.profile');
+// Route::get('/user/profile', [UserProfileController::class, 'showProfile'])->name('user.profile');
+Route::get('/user/profile', [UserProfileController::class, 'showProfile'])->middleware(['auth'])->name('user.profile');
+Route::post('/user/profile', [UserProfileController::class, 'updateProfile'])->middleware(['auth'])->name('user.profile.update');
+
+// 体型データ関連のルート
+Route::get('/user/bodydata', [UserBodyDataController::class, 'showBodyData'])->name('user.bodydata');
+Route::post('/user/bodydata', [UserBodyDataController::class, 'updateBodyData'])->name('user.bodydata.update');
+
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/user/bodydata', [UserBodyDataController::class, 'showBodyData'])->name('user.bodydata');
+//     Route::post('/user/bodydata', [UserBodyDataController::class, 'updateBodyData'])->name('user.bodydata.update');
+// });
+
+// Route::get('/user/bodydata', [UserController::class, 'showBodyData'])->name('user.bodydata');
+// Route::get('/user/bodydata/edit', [UserController::class, 'editBodyData'])->name('user.bodydata.edit');
 
 
 /*
@@ -33,10 +49,10 @@ Route::get('/user/bodydata/edit', [UserController::class, 'editBodyData'])->name
 // Route::get('/', [UsersController::class,'index'])->middleware(['auth'])->name('account_paage');
 // Route::get('/account', [UsersController::class,'index'])->middleware(['auth'])->name('account');
 
-// //本：追加 
+// //本：追加
 // Route::post('/measurements',[UsersController::class,"store"])->name('measurement_store');
 
-// //本：削除 
+// //本：削除
 // Route::delete('/book/{book}', [UsersController::class,"destroy"])->name('book_destroy');
 
 // //本：更新画面
@@ -47,7 +63,7 @@ Route::get('/user/bodydata/edit', [UserController::class, 'editBodyData'])->name
 // Route::post('/books/update',[UsersController::class,"update"])->name('book_update');
 
 // /**
-// * 「ログイン機能」インストールで追加されています 
+// * 「ログイン機能」インストールで追加されています
 // */
 // //Route::get('/dashboard', function () {
 // //    return view('dashboard');
